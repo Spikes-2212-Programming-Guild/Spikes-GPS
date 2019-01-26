@@ -6,7 +6,7 @@ screen_length = 455
 
 field_width = 16.46
 field_length = 8.23
-red = (255, 0, 0)
+red = (255,0, 0)
 
 
 get_pixle_width = lambda real_width: int(real_width * screen_width / field_width)
