@@ -37,7 +37,7 @@ class Robot:
 def setup():
     logo = pygame.image.load("sprites/Logo.png")
     pygame.display.set_icon(logo)
-    pygame.display.set_caption("Auto courses")
+    pygame.display.set_caption("Spikes GPS")
 
 
 def draw_field(data_function=None):
@@ -51,13 +51,10 @@ def draw_field(data_function=None):
     bg = pygame.image.load("sprites/2019-field.jpg")
     bg = pygame.transform.scale(bg, (screen_width, screen_height))
 
-    bot = Robot(1, 1, "sprites/arraow.png")
+    bot = Robot(1, 1, "sprites/arrow.png")
 
     done = False
     while not done:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                done = True
 
         if data_function:
             x, y, angle = data_function()
@@ -68,6 +65,10 @@ def draw_field(data_function=None):
 
         pygame.display.update()
         time.sleep(0.04)
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                done = True
 
 
 def main():
