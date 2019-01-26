@@ -31,11 +31,11 @@ class Robot:
         self.y = get_pixle_length(new_y)
 
         self.image = self._org_img
-        self.image = pygame.transform.rotate(self.image, new_angle-90)
+        self.image = pygame.transform.rotate(self.image, new_angle)
 
 
 def setup():
-    logo = pygame.image.load("sprites/Logo.png")
+    logo = pygame.image.load("sprites/Logo.ico")
     pygame.display.set_icon(logo)
     pygame.display.set_caption("Spikes GPS")
 
