@@ -40,7 +40,7 @@ def setup():
     pygame.display.set_caption("Auto courses")
 
 
-def main():
+def draw_field(data_function=None):
     global screen_width
     global screen_height
 
@@ -55,16 +55,23 @@ def main():
 
     done = False
     while not done:
-
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 done = True
+
+        if data_function:
+            x, y, angle = data_function()
+            bot.update_location(x, y, angle)
 
         screen.blit(bg, (0, 0))
         screen.blit(bot.image, (bot.x, bot.y))
 
         pygame.display.update()
         time.sleep(0.04)
+
+
+def main():
+    draw_field()
 
 
 if __name__ == '__main__':
