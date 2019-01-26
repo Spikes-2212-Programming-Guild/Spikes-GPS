@@ -24,16 +24,14 @@ class Robot:
         self._org_img = pygame.transform.scale(self.image, (self.width, self.length))
 
         self.x = 0
-        self.y = 200
-        self.angle = 0
+        self.y = 0
 
-    def update_location(self, delta_width, delta_length, delta_angle):
-        self.x = get_pixle_width(delta_width)
-        self.y = get_pixle_length(delta_length)
+    def update_location(self, new_x, new_y, new_angle):
+        self.x = get_pixle_width(new_x)
+        self.y = get_pixle_length(new_y)
 
         self.image = self._org_img
-        self.image = pygame.transform.rotate(self.image, delta_angle-90)
-        self.angle = delta_angle
+        self.image = pygame.transform.rotate(self.image, new_angle-90)
 
 
 def setup():
@@ -53,7 +51,7 @@ def main():
     bg = pygame.image.load("sprites/2019-field.jpg")
     bg = pygame.transform.scale(bg, (screen_width, screen_height))
 
-    roby = Robot(1, 1, "sprites/arraow.png")
+    bot = Robot(1, 1, "sprites/arraow.png")
 
     done = False
     while not done:
@@ -63,7 +61,7 @@ def main():
                 done = True
 
         screen.blit(bg, (0, 0))
-        screen.blit(roby.image, (roby.x, roby.y))
+        screen.blit(bot.image, (bot.x, bot.y))
 
         pygame.display.update()
         time.sleep(0.04)
