@@ -57,8 +57,8 @@ def draw_field(robot_length, robot_width, data_function=None):
     while not done:
 
         if data_function:
-            x_function, y_function, angle_function = data_function()
-            bot.update_location(x_function(), y_function(), angle_function())
+            x, y, angle = data_function()
+            bot.update_location(x, y, angle)
 
         screen.blit(bg, (0, 0))
         screen.blit(bot.image, (bot.x, bot.y))
