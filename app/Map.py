@@ -2,7 +2,7 @@ import pygame
 import time
 
 screen_width = 784
-screen_height = 455
+screen_length = 455
 
 field_width = 16.46
 field_length = 8.23
@@ -10,7 +10,7 @@ red = (255, 0, 0)
 
 
 get_pixle_width = lambda real_width: int(real_width * screen_width / field_width)
-get_pixle_length = lambda real_length: int(real_length * screen_width / field_width)
+get_pixle_length = lambda real_length: int(real_length * screen_length / field_length)
 
 
 class Robot:
@@ -40,25 +40,25 @@ def setup():
     pygame.display.set_caption("Spikes GPS")
 
 
-def draw_field(data_function=None):
+def draw_field(robot_length, robot_width, data_function=None):
     global screen_width
-    global screen_height
+    global screen_length
 
     pygame.init()
     setup()
 
-    screen = pygame.display.set_mode((screen_width, screen_height))
+    screen = pygame.display.set_mode((screen_width, screen_length))
     bg = pygame.image.load("sprites/2019-field.jpg")
-    bg = pygame.transform.scale(bg, (screen_width, screen_height))
+    bg = pygame.transform.scale(bg, (screen_width, screen_length))
 
-    bot = Robot(1, 1, "sprites/arrow.png")
+    bot = Robot(robot_width, robot_length, "sprites/arrow.png")
 
     done = False
     while not done:
 
         if data_function:
-            x, y, angle = data_function()
-            bot.update_location(x, y, angle)
+            x_function, y_function, angle_function = data_function()
+            bot.update_location(x_function(), y_function(), angle_function())
 
         screen.blit(bg, (0, 0))
         screen.blit(bot.image, (bot.x, bot.y))
@@ -69,11 +69,3 @@ def draw_field(data_function=None):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 done = True
-
-
-def main():
-    draw_field()
-
-
-if __name__ == '__main__':
-    main()
