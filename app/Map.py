@@ -6,7 +6,7 @@ screen_length = 455
 
 field_width = 16.46
 field_length = 8.23
-red = (255,0, 0)
+red = (255, 0, 0)
 
 
 get_pixle_width = lambda real_width: int(real_width * screen_width / field_width)
@@ -31,16 +31,16 @@ class Robot:
         self.y = get_pixle_length(new_y)
 
         self.image = self._org_img
-        self.image = pygame.transform.rotate(self.image, new_angle-90)
+        self.image = pygame.transform.rotate(self.image, new_angle)
 
 
 def setup():
-    logo = pygame.image.load("sprites/Logo.png")
+    logo = pygame.image.load("sprites/Logo.ico")
     pygame.display.set_icon(logo)
     pygame.display.set_caption("Spikes GPS")
 
 
-def draw_field(robot_length, robot_width, data_function=None):
+def draw_field(robot_length, robot_width, color, data_function=None):
     global screen_width
     global screen_length
 
@@ -50,6 +50,8 @@ def draw_field(robot_length, robot_width, data_function=None):
     screen = pygame.display.set_mode((screen_width, screen_length))
     bg = pygame.image.load("sprites/2019-field.jpg")
     bg = pygame.transform.scale(bg, (screen_width, screen_length))
+    if color == "blue":
+        bg = pygame.transform.rotate(bg, 180)
 
     bot = Robot(robot_width, robot_length, "sprites/arrow.png")
 
