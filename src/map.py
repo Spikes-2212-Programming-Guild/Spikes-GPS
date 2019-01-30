@@ -1,4 +1,4 @@
-from app import window_handler
+from src import window_handler
 import pygame
 import time
 
