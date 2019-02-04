@@ -1,4 +1,4 @@
-from app import WindowHandler
+from src import window_handler
 import pygame
 import time
 
@@ -59,7 +59,7 @@ def draw_field(robot_length, robot_width, color, data_function=None):
     done = False
     while not done:
 
-        WindowHandler.on_top(pygame.display.get_wm_info()['window'])
+        window_handler.on_top(pygame.display.get_wm_info()['window'])
         if data_function:
             x, y, angle = data_function()
             bot.update_location(x, y, angle)
