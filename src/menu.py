@@ -20,15 +20,16 @@ def draw_menu():
     panel = tk.Label(root, image=img)
     panel.pack()
 
-    choise = tk.StringVar()
+    choise = tk.IntVar()
 
-    red_rbutton = tk.Radiobutton(root, text="Red", value="red", variable=choise)
+    red_rbutton = tk.Radiobutton(root, text="Red", value=0, variable=choise)
     red_rbutton.pack()
 
-    blue_rbutton = tk.Radiobutton(root, text="Blue", value="blue", variable=choise).pack()
+    blue_rbutton = tk.Radiobutton(root, text="Blue", value=1, variable=choise)
+    blue_rbutton.pack()
 
     confirm_button = tk.Button(root, text="confirm", command=lambda: root.destroy()).pack()
     win = Window(root=root)
 
     root.mainloop()
-    return choise.get()
+    return "red" if choise.get() == 0 else "blue"
