@@ -2,11 +2,11 @@ from src import window_handler
 import pygame
 import time
 
-screen_width = 784
-screen_length = 455
+screen_width = 960
+screen_length = 656
 
-field_width = 16.46
-field_length = 8.23
+field_width = 10.3632
+field_length = 8.2296
 red = (255, 0, 0)
 
 
