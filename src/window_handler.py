@@ -1,4 +1,4 @@
-from ctypes import windll, Structure, c_long, byref #windows only
+from ctypes import windll, Structure, c_long, byref  # windows only
 
 
 class Rect(Structure):

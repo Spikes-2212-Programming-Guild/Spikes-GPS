@@ -1,6 +1,5 @@
 from src import window_handler
 import pygame
-import time
 
 screen_width = 960
 screen_length = 656
@@ -41,7 +40,8 @@ def setup():
     pygame.display.set_caption("Spikes GPS")
 
 
-def draw_field(robot_length, robot_width, color, data_function=None):
+def init_field(color):
+    global screen
     global screen_width
     global screen_length
 
@@ -51,25 +51,19 @@ def draw_field(robot_length, robot_width, color, data_function=None):
     screen = pygame.display.set_mode((screen_width, screen_length))
     bg = pygame.image.load("sprites/2019-field.jpg")
     bg = pygame.transform.scale(bg, (screen_width, screen_length))
-    if color == "blue":
+    if color == "red":
         bg = pygame.transform.rotate(bg, 180)
 
+    window_handler.on_top(pygame.display.get_wm_info()['window'])
+    screen.blit(bg, (0, 0))
+
+
+def draw_field(robot_length, robot_width, data_function):
     bot = Robot(robot_width, robot_length, "sprites/arrow.png")
+    if data_function:
+        x, y, angle = data_function()
+        bot.update_location(x, y, angle)
 
-    done = False
-    while not done:
+    screen.blit(bot.image, (bot.x, bot.y))
 
-        window_handler.on_top(pygame.display.get_wm_info()['window'])
-        if data_function:
-            x, y, angle = data_function()
-            bot.update_location(x, y, angle)
-
-        screen.blit(bg, (0, 0))
-        screen.blit(bot.image, (bot.x, bot.y))
-
-        pygame.display.update()
-        time.sleep(0.04)
-
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                done = True
+    pygame.display.update()
