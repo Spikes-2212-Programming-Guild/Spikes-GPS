@@ -62,9 +62,8 @@ class OdometryHandler:
         self.x += x_displacement
         self.y += y_displacement
 
-        def data_function():
-            return self.x, self.y, self.angle_supplier()
-        map.draw_field(self.length, self.width, data_function)
+    def data_function(self):
+        return self.x, self.y, self.angle_supplier()
 
     def set_position(self, x, y, yaw):
         self.x = x

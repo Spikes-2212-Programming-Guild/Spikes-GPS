@@ -12,6 +12,7 @@ def main():
     done = False
     while not done:
         handler.calculate()
+        map.draw_field(handler.length, handler.width, handler.data_function)
         time.sleep(0.04)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
