@@ -8,7 +8,7 @@ def main():
     color = menu.draw_menu()
     map.init_field(color)
 
-    handler = odometry.OdometryHandler(0, 0, 0, "width", "length", "Robot x", "Robot y", "Robot angle")
+    handler = odometry.OdometryHandler(0, 0, 0, "Robot width", "Robot length", "Robot left", "Robot right", "Robot angle")
     done = False
     while not done:
         handler.calculate()
