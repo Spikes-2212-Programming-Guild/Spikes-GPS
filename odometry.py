@@ -1,7 +1,6 @@
 from networktables import NetworkTables as nt
 import math
 import mathutil
-from src import map
 nt.initialize(server="10.22.12.2")
 smart_dashboard = nt.getTable("SmartDashboard")
 preferences = nt.getTable("Preferences")
