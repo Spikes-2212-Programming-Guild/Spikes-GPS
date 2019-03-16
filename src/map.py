@@ -44,6 +44,7 @@ def init_field(color):
     global screen
     global screen_width
     global screen_length
+    global bg
 
     pygame.init()
     setup()
@@ -64,6 +65,7 @@ def draw_field(robot_length, robot_width, data_function):
         x, y, angle = data_function()
         bot.update_location(x, y, angle)
 
+    screen.blit(bg, (0, 0))
     screen.blit(bot.image, (bot.x, bot.y))
 
-    pygame.display.update()
+    pygame.display.flip()
